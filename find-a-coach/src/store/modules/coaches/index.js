@@ -4,7 +4,11 @@ import getters from "./getters.js";
 
 export default {
   namespaced: true,
-  sate() {},
+  state() {
+    return {
+      coaches: [],
+    };
+  },
   mutations,
   actions,
   getters,
