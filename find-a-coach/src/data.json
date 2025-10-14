@@ -1,0 +1,18 @@
+{
+  "coaches": [
+    {
+      "firstName": "Mauricio",
+      "lastName": "Corte",
+      "areas": ["frontend", "backend", "career"],
+      "description": "Hello! My name is Mauricio Corte. I'm a software development student.",
+      "hourlyRate": 30
+    },
+    {
+      "firstName": "Maximilian",
+      "lastName": "Schwarzmüller",
+      "areas": ["frontend", "backend", "career"],
+      "description": "I'm Maximilian the software development coach.",
+      "hourlyRate": 30
+    }
+  ]
+}
