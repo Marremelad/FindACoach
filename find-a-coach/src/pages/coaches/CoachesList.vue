@@ -38,9 +38,6 @@ export default {
       return this.$store.getters["coaches/hasCoaches"];
     },
   },
-  created() {
-    this.$store.dispatch("coaches/setCoaches");
-  },
 };
 </script>
 

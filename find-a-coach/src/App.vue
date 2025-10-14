@@ -1,14 +1,22 @@
 <template>
   <the-header></the-header>
-  <router-view></router-view>
+  <router-view v-if="!isLoading"></router-view>
+  <div v-else>Loading...</div>
 </template>
-
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
-
 export default {
   components: {
     TheHeader,
+  },
+  data() {
+    return {
+      isLoading: true,
+    };
+  },
+  async created() {
+    await this.$store.dispatch("coaches/setCoaches");
+    this.isLoading = false;
   },
 };
 </script>
