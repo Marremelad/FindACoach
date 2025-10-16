@@ -3,7 +3,7 @@
     {
       "firstName": "Mauricio",
       "lastName": "Corte",
-      "areas": ["frontend", "backend", "career"],
+      "areas": ["frontend", "backend"],
       "description": "Hello! My name is Mauricio Corte. I'm a software development student.",
       "hourlyRate": 30
     },

@@ -1,5 +1,7 @@
 <template>
-  <section>FILTER</section>
+  <section>
+    <coach-filter @set-filter="setFilter"></coach-filter>
+  </section>
   <section>
     <base-card>
       <div class="controls">
@@ -21,18 +23,30 @@
     </base-card>
   </section>
 </template>
-
 <script>
 import CoachItem from "@/components/coaches/CoachItem.vue";
-import { useLink } from "vue-router";
-
+import CoachFilter from "@/components/coaches/CoachFilter.vue";
 export default {
   components: {
     CoachItem,
+    CoachFilter,
+  },
+  data() {
+    return {
+      activeFilters: ["frontend", "backend", "career"],
+    };
+  },
+  methods: {
+    setFilter(event) {
+      this.activeFilters = event;
+    },
   },
   computed: {
     filteredCoaches() {
-      return this.$store.getters["coaches/getCoaches"];
+      const coaches = this.$store.getters["coaches/getCoaches"];
+      return coaches.filter((coach) =>
+        coach.areas.some((area) => this.activeFilters.includes(area))
+      );
     },
     hasCoaches() {
       return this.$store.getters["coaches/hasCoaches"];
@@ -40,14 +54,12 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
 .controls {
   display: flex;
   justify-content: space-between;
