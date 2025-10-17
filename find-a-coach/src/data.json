@@ -3,10 +3,7 @@
     {
       "firstName": "Mauricio",
       "lastName": "Corte",
-      "areas": [
-        "frontend",
-        "backend"
-      ],
+      "areas": ["frontend", "backend"],
       "description": "Hello! My name is Mauricio Corte. I'm a software development student.",
       "hourlyRate": 30,
       "id": "3d04"
@@ -14,54 +11,10 @@
     {
       "firstName": "Maximilian",
       "lastName": "Schwarzmüller",
-      "areas": [
-        "frontend",
-        "backend",
-        "career"
-      ],
+      "areas": ["frontend", "backend", "career"],
       "description": "I'm Maximilian the software development coach.",
       "hourlyRate": 30,
       "id": "a4b7"
-    },
-    {
-      "id": "f841",
-      "firstName": "Paki",
-      "lastName": "Marsh",
-      "description": "Ea perspiciatis ut",
-      "hourlyRate": 10,
-      "areas": [
-        "career"
-      ]
-    },
-    {
-      "id": "2b30",
-      "firstName": "Ingrid",
-      "lastName": "Pitts",
-      "description": "Cumque rerum unde po",
-      "hourlyRate": 67,
-      "areas": [
-        "frontend"
-      ]
-    },
-    {
-      "id": "e3d1",
-      "firstName": "Leigh",
-      "lastName": "Deleon",
-      "description": "Blanditiis reprehend",
-      "hourlyRate": 94,
-      "areas": [
-        "career"
-      ]
-    },
-    {
-      "id": "1665",
-      "firstName": "Willow",
-      "lastName": "Byers",
-      "description": "Consectetur invento",
-      "hourlyRate": 57,
-      "areas": [
-        "backend"
-      ]
     }
   ]
 }
