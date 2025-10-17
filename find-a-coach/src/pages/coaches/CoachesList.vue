@@ -23,6 +23,7 @@
     </base-card>
   </section>
 </template>
+
 <script>
 import CoachItem from "@/components/coaches/CoachItem.vue";
 import CoachFilter from "@/components/coaches/CoachFilter.vue";
@@ -54,6 +55,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 ul {
   list-style: none;
