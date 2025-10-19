@@ -4,17 +4,36 @@
   <div v-else class="spinner-container">
     <base-spinner></base-spinner>
   </div>
+  <base-dialog :show="!!error" title="An error occurred" @close="closeDialog">
+    <p>{{ error }}</p>
+  </base-dialog>
 </template>
 
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 
 export default {
+  data() {
+    return {
+      error: null,
+    };
+  },
   components: {
     TheHeader,
   },
+  methods: {
+    closeDialog() {
+      this.error = null;
+    },
+  },
   async created() {
-    await this.$store.dispatch("coaches/setCoaches");
+    try {
+      await this.$store.dispatch("coaches/setCoaches");
+    } catch (error) {
+      this.error = error.message || "Something went wrong...";
+    } finally {
+      this.$store.commit("coaches/setIsLoading", false);
+    }
   },
   computed: {
     isLoadingCoaches() {

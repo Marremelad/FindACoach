@@ -2,15 +2,9 @@ import axios from "axios";
 
 export default {
   async setCoaches({ commit }) {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      const response = await axios.get("http://localhost:5000/coaches");
-      commit("setCoaches", response.data);
-      commit("setIsLoading", false);
-    } catch (error) {
-      console.error("Error fetching coaches", error);
-    }
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    const response = await axios.get("http://localhost:5000/coaches");
+    commit("setCoaches", response.data);
   },
   async addCoach({ commit }, payload) {
     try {
