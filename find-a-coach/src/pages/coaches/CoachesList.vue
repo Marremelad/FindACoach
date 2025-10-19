@@ -8,7 +8,9 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches(true)"
+          >Refresh</base-button
+        >
         <base-button v-if="!isLoadingCoaches && hasCoaches" link to="register">
           Register a Coach
         </base-button>
@@ -50,8 +52,8 @@ export default {
     closeDialog() {
       this.error = null;
     },
-    async loadCoaches() {
-      if (this.hasCoaches) return;
+    async loadCoaches(forceRefresh = false) {
+      if (!forceRefresh && this.hasCoaches) return;
 
       this.$store.commit("coaches/setIsLoading", true);
       try {
