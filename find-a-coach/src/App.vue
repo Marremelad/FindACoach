@@ -4,7 +4,7 @@
   <div v-else class="spinner-container">
     <base-spinner></base-spinner>
   </div>
-  <base-dialog :show="!!error" title="An error occurred" @close="closeDialog">
+  <base-dialog :show="!!error" @close="closeDialog">
     <p>{{ error }}</p>
   </base-dialog>
 </template>
