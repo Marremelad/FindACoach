@@ -9,7 +9,9 @@
     <base-card>
       <div class="controls">
         <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
-        <base-button link to="register"> Register a Coach </base-button>
+        <base-button v-if="!isLoadingCoaches && hasCoaches" link to="register">
+          Register a Coach
+        </base-button>
       </div>
       <div v-if="isLoadingCoaches" class="spinner-container">
         <base-spinner></base-spinner>
@@ -49,6 +51,8 @@ export default {
       this.error = null;
     },
     async loadCoaches() {
+      if (this.hasCoaches) return;
+
       this.$store.commit("coaches/setIsLoading", true);
       try {
         await this.$store.dispatch("coaches/setCoaches");
