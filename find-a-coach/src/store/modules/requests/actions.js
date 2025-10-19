@@ -2,12 +2,8 @@ import axios from "axios";
 
 export default {
   async setRequests({ commit }) {
-    try {
-      const response = axios.get("http://localhost:5000/requests");
-      commit("setRequests", (await response).data);
-    } catch (error) {
-      console.error("Error setting requests", error);
-    }
+    const response = axios.get("http://localhost:5000/requests");
+    commit("setRequests", (await response).data);
   },
   async addRequest({ commit }, payload) {
     try {

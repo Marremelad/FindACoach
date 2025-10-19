@@ -15,6 +15,9 @@
       </header>
     </base-card>
   </section>
+  <base-dialog :show="!!error" @close="closeDialog">
+    <p>{{ error }}</p>
+  </base-dialog>
 </template>
 
 <script>
@@ -24,6 +27,16 @@ export default {
   components: {
     RequestItem,
   },
+  data() {
+    return {
+      error: null,
+    };
+  },
+  methods: {
+    closeDialog() {
+      this.error = null;
+    },
+  },
   computed: {
     requests() {
       return this.$store.getters["requests/getRequests"];
@@ -32,8 +45,12 @@ export default {
       return this.$store.getters["requests/hasRequests"];
     },
   },
-  created() {
-    this.$store.dispatch("requests/setRequests");
+  async created() {
+    try {
+      await this.$store.dispatch("requests/setRequests");
+    } catch (error) {
+      this.error = error.message || "Something went wrong...";
+    }
   },
 };
 </script>
