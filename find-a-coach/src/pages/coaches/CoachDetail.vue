@@ -9,7 +9,9 @@
     <base-card>
       <header>
         <h2>Interested? Reach out now!</h2>
-        <base-button link :to="contactLink">Contact</base-button>
+        <base-button v-if="IsCoachDetails" link :to="contactLink"
+          >Contact</base-button
+        >
       </header>
       <router-view></router-view>
     </base-card>
@@ -41,6 +43,9 @@ export default {
     );
   },
   computed: {
+    IsCoachDetails() {
+      return this.$route.name === "coach-details";
+    },
     fullName() {
       return this.coach.firstName + " " + this.coach.lastName;
     },
