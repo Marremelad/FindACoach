@@ -24,6 +24,9 @@
       <base-button>Send Message</base-button>
     </div>
   </form>
+  <base-dialog :show="!!error" @close="closeDialog">
+    <p>{{ error }}</p>
+  </base-dialog>
 </template>
 
 <script>
@@ -40,6 +43,7 @@ export default {
           isValid: true,
         },
       },
+      error: null,
     };
   },
   methods: {
@@ -57,15 +61,22 @@ export default {
       this.validateMessage();
       return Object.values(this.formData).every((field) => field.isValid);
     },
-    submitForm() {
-      if (!this.validateForm()) return;
-      const request = {
-        coachId: this.$route.params.id,
-        senderEmail: this.formData.email.value,
-        message: this.formData.message.value,
-      };
-      console.log(request);
-      this.$store.dispatch("requests/addRequest", request);
+    async submitForm() {
+      try {
+        if (!this.validateForm()) return;
+        const request = {
+          coachId: this.$route.params.id,
+          senderEmail: this.formData.email.value,
+          message: this.formData.message.value,
+        };
+        await this.$store.dispatch("requests/addRequest", request);
+        this.$router.push("/");
+      } catch (error) {
+        this.error = error.message || "Something went wrong...";
+      }
+    },
+    closeDialog() {
+      this.error = null;
     },
   },
   computed: {
