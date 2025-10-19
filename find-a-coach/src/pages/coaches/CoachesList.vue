@@ -49,7 +49,7 @@ export default {
       );
     },
     hasCoaches() {
-      return !this.isLoading && this.$store.getters["coaches/hasCoaches"];
+      return this.$store.getters["coaches/hasCoaches"];
     },
   },
 };
