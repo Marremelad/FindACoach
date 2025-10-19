@@ -7,14 +7,7 @@ export default {
     commit("setCoaches", response.data);
   },
   async addCoach({ commit }, payload) {
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/coaches",
-        payload
-      );
-      commit("addCoach", response.data);
-    } catch (error) {
-      console.error("Error adding coach", error);
-    }
+    const response = await axios.post("http://localhost:5000/coaches", payload);
+    commit("addCoach", response.data);
   },
 };

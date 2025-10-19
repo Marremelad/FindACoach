@@ -5,19 +5,36 @@
       <coach-form @submit-data="submitData"></coach-form>
     </base-card>
   </section>
+  <base-dialog :show="!!error" @close="closeDialog">
+    <p>{{ error }}</p>
+  </base-dialog>
 </template>
 
 <script>
 import CoachForm from "@/components/coaches/CoachForm.vue";
 
 export default {
+  data() {
+    return {
+      error: null,
+    };
+  },
   components: {
     CoachForm,
   },
   methods: {
-    submitData(data) {
-      this.$store.dispatch("coaches/addCoach", data);
-      this.$router.push("/coaches");
+    closeDialog() {
+      this.error = null;
+    },
+
+    async submitData(data) {
+      try {
+        await this.$store.dispatch("coaches/addCoach", data);
+        this.$router.push("/coaches");
+      } catch (error) {
+        console.log("Hello from the catch block!");
+        this.error = error.message || "Something went wrong...";
+      }
     },
   },
 };
