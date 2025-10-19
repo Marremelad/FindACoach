@@ -23,6 +23,12 @@
       "coachId": "3d04",
       "senderEmail": "test2@email.com",
       "message": "This is a test!"
+    },
+    {
+      "id": "93e6",
+      "coachId": "a4b7",
+      "senderEmail": "mauricio.corte@chasacademy.se",
+      "message": "Hello!"
     }
   ]
 }

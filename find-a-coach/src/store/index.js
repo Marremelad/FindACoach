@@ -12,6 +12,11 @@ const store = createStore({
       userId: "3d04",
     };
   },
+  getters: {
+    getUserId(state) {
+      return state.userId;
+    },
+  },
 });
 
 export default store;
