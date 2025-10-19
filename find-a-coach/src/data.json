@@ -16,5 +16,13 @@
       "hourlyRate": 30,
       "id": "a4b7"
     }
+  ],
+  "requests": [
+    {
+      "id": "4100",
+      "coachId": "3d04",
+      "senderEmail": "test2@email.com",
+      "message": "This is a test!"
+    }
   ]
 }

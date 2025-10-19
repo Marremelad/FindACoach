@@ -60,10 +60,12 @@ export default {
     submitForm() {
       if (!this.validateForm()) return;
       const request = {
-        email: this.formData.email.value,
+        coachId: this.$route.params.id,
+        senderEmail: this.formData.email.value,
         message: this.formData.message.value,
       };
       console.log(request);
+      this.$store.dispatch("requests/addRequest", request);
     },
   },
   computed: {
