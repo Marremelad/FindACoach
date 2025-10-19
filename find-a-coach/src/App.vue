@@ -1,22 +1,25 @@
 <template>
   <the-header></the-header>
-  <router-view v-if="!isLoading"></router-view>
-  <div v-else>Loading...</div>
+  <router-view v-if="!isLoadingCoaches"></router-view>
+  <div v-else class="spinner-container">
+    <base-spinner></base-spinner>
+  </div>
 </template>
+
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
+
 export default {
   components: {
     TheHeader,
   },
-  data() {
-    return {
-      isLoading: true,
-    };
-  },
   async created() {
     await this.$store.dispatch("coaches/setCoaches");
-    this.isLoading = false;
+  },
+  computed: {
+    isLoadingCoaches() {
+      return this.$store.getters["coaches/getIsLoading"];
+    },
   },
 };
 </script>
@@ -34,5 +37,16 @@ html {
 
 body {
   margin: 0;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
 }
 </style>

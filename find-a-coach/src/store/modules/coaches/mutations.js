@@ -1,4 +1,7 @@
 export default {
+  setIsLoading(state, payload) {
+    state.isLoading = payload;
+  },
   setCoaches(state, payload) {
     state.coaches = payload;
   },

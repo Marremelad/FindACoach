@@ -1,4 +1,7 @@
 export default {
+  getIsLoading(state) {
+    return state.isLoading;
+  },
   getCoaches(state) {
     return state.coaches;
   },
