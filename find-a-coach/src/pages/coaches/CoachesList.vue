@@ -1,13 +1,20 @@
 <template>
+  <base-dialog @close="closeDialog">
+    <p>{{ error }}</p>
+  </base-dialog>
   <section>
     <coach-filter @set-filter="setFilter"></coach-filter>
   </section>
   <section>
     <base-card>
       <div class="controls">
+        <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
         <base-button link to="register"> Register a Coach </base-button>
       </div>
-      <ul v-if="hasCoaches">
+      <div v-if="isLoadingCoaches" class="spinner-container">
+        <base-spinner></base-spinner>
+      </div>
+      <ul v-else-if="hasCoaches">
         <coach-item
           v-for="coach in filteredCoaches"
           :key="coach.id"
@@ -33,15 +40,32 @@ export default {
   },
   data() {
     return {
+      error: null,
       activeFilters: ["frontend", "backend", "career"],
     };
   },
   methods: {
+    closeDialog() {
+      this.error = null;
+    },
+    async loadCoaches() {
+      this.$store.commit("coaches/setIsLoading", true);
+      try {
+        await this.$store.dispatch("coaches/setCoaches");
+      } catch (error) {
+        this.error = error.message || "Something went wrong...";
+      } finally {
+        this.$store.commit("coaches/setIsLoading", false);
+      }
+    },
     setFilter(event) {
       this.activeFilters = event;
     },
   },
   computed: {
+    isLoadingCoaches() {
+      return this.$store.getters["coaches/getIsLoading"];
+    },
     filteredCoaches() {
       const coaches = this.$store.getters["coaches/getCoaches"];
       return coaches.filter((coach) =>
@@ -51,6 +75,9 @@ export default {
     hasCoaches() {
       return this.$store.getters["coaches/hasCoaches"];
     },
+  },
+  created() {
+    this.loadCoaches();
   },
 };
 </script>
