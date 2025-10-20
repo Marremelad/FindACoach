@@ -1,26 +1,28 @@
 <template>
-  <section>
-    <base-card>
-      <header>
-        <h2>Requests Received</h2>
-        <div v-if="isLoadingRequests">
-          <base-spinner></base-spinner>
-        </div>
-        <ul v-else-if="hasRequests">
-          <request-item
-            v-for="request in requests"
-            :key="request.id"
-            :sender-email="request.senderEmail"
-            :message="request.message"
-          ></request-item>
-        </ul>
-        <h3 v-else>You have not received any requests yet!</h3>
-      </header>
-    </base-card>
-  </section>
-  <base-dialog :show="!!error" @close="closeDialog">
-    <p>{{ error }}</p>
-  </base-dialog>
+  <div>
+    <section>
+      <base-card>
+        <header>
+          <h2>Requests Received</h2>
+          <div v-if="isLoadingRequests">
+            <base-spinner></base-spinner>
+          </div>
+          <ul v-else-if="hasRequests">
+            <request-item
+              v-for="request in requests"
+              :key="request.id"
+              :sender-email="request.senderEmail"
+              :message="request.message"
+            ></request-item>
+          </ul>
+          <h3 v-else>You have not received any requests yet!</h3>
+        </header>
+      </base-card>
+    </section>
+    <base-dialog :show="!!error" @close="closeDialog">
+      <p>{{ error }}</p>
+    </base-dialog>
+  </div>
 </template>
 
 <script>

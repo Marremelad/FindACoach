@@ -1,13 +1,15 @@
 <template>
-  <section>
-    <base-card>
-      <h2>Register as a Coach now!</h2>
-      <coach-form @submit-data="submitData"></coach-form>
-    </base-card>
-  </section>
-  <base-dialog :show="!!error" @close="closeDialog">
-    <p>{{ error }}</p>
-  </base-dialog>
+  <div>
+    <section>
+      <base-card>
+        <h2>Register as a Coach now!</h2>
+        <coach-form @submit-data="submitData"></coach-form>
+      </base-card>
+    </section>
+    <base-dialog :show="!!error" @close="closeDialog">
+      <p>{{ error }}</p>
+    </base-dialog>
+  </div>
 </template>
 
 <script>

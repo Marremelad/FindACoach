@@ -1,46 +1,48 @@
 <template>
-  <base-dialog :show="!!error" @close="closeDialog">
-    <p>{{ error }}</p>
-  </base-dialog>
-  <div v-if="isLoadingCoaches">
-    <base-spinner></base-spinner>
-  </div>
-  <div v-else-if="hasCoach">
-    <section>
+  <div>
+    <base-dialog :show="!!error" @close="closeDialog">
+      <p>{{ error }}</p>
+    </base-dialog>
+    <div v-if="isLoadingCoaches">
+      <base-spinner></base-spinner>
+    </div>
+    <div v-else-if="hasCoach">
+      <section>
+        <base-card>
+          <h2>{{ fullName }}</h2>
+          <h3>${{ hourlyRate }}/hour</h3>
+        </base-card>
+      </section>
+      <section>
+        <base-card>
+          <header>
+            <h2>Interested? Reach out now!</h2>
+            <base-button v-if="IsCoachDetails" link :to="contactLink"
+              >Contact</base-button
+            >
+          </header>
+          <router-view></router-view>
+        </base-card>
+      </section>
+      <section>
+        <base-card>
+          <base-badge
+            v-for="area in areas"
+            :key="area"
+            :type="area"
+            :title="area"
+          ></base-badge>
+          <p>{{ coach.description }}</p>
+        </base-card>
+      </section>
+    </div>
+    <div v-else>
       <base-card>
-        <h2>{{ fullName }}</h2>
-        <h3>${{ hourlyRate }}/hour</h3>
+        <h2>Coach not found</h2>
+        <p>The coach you're looking for doesn't exist.</p>
+        <base-button link to="/coaches">Back to Coaches</base-button>
       </base-card>
-    </section>
-    <section>
-      <base-card>
-        <header>
-          <h2>Interested? Reach out now!</h2>
-          <base-button v-if="IsCoachDetails" link :to="contactLink"
-            >Contact</base-button
-          >
-        </header>
-        <router-view></router-view>
-      </base-card>
-    </section>
-    <section>
-      <base-card>
-        <base-badge
-          v-for="area in areas"
-          :key="area"
-          :type="area"
-          :title="area"
-        ></base-badge>
-        <p>{{ coach.description }}</p>
-      </base-card>
-    </section>
-  </div>
-  <div v-else>
-    <base-card>
-      <h2>Coach not found</h2>
-      <p>The coach you're looking for doesn't exist.</p>
-      <base-button link to="/coaches">Back to Coaches</base-button>
-    </base-card>
+    </div>
   </div>
 </template>
 
