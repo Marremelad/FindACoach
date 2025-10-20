@@ -8,14 +8,14 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline" @click="loadCoaches(true)"
-          >Refresh</base-button
-        >
+        <base-button mode="outline" @click="loadCoaches(true)">
+          Refresh
+        </base-button>
         <base-button v-if="!isLoadingCoaches && hasCoaches" link to="register">
           Register a Coach
         </base-button>
       </div>
-      <div v-if="isLoadingCoaches" class="spinner-container">
+      <div v-if="isLoadingCoaches">
         <base-spinner></base-spinner>
       </div>
       <ul v-else-if="hasCoaches">
