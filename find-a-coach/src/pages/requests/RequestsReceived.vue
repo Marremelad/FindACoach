@@ -3,7 +3,10 @@
     <base-card>
       <header>
         <h2>Requests Received</h2>
-        <ul v-if="hasRequests">
+        <div v-if="isLoadingRequests">
+          <base-spinner></base-spinner>
+        </div>
+        <ul v-else-if="hasRequests">
           <request-item
             v-for="request in requests"
             :key="request.id"
@@ -36,8 +39,14 @@ export default {
     closeDialog() {
       this.error = null;
     },
+    setIsLoadingRequests(to) {
+      this.$store.commit("requests/setIsLoading", to);
+    },
   },
   computed: {
+    isLoadingRequests() {
+      return this.$store.getters["requests/getIsLoading"];
+    },
     requests() {
       return this.$store.getters["requests/getRequests"];
     },
@@ -46,10 +55,15 @@ export default {
     },
   },
   async created() {
+    if (this.hasRequests) return;
+
+    this.setIsLoadingRequests(true);
     try {
       await this.$store.dispatch("requests/setRequests");
     } catch (error) {
       this.error = error.message || "Something went wrong...";
+    } finally {
+      this.setIsLoadingRequests(false);
     }
   },
 };
